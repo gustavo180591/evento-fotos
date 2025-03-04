@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bienvenido al Sistema de Registro de Fotos{% endblock %}
+
+{% block body %}
+    <div class="example-wrapper text-center">
+        <h1>Bienvenido al Sistema de Registro de Fotos</h1>
+        <div class="d-flex justify-content-center">
+            <a class="btn btn-primary m-2" href="{{ path('registro_nueva') }}">Registrar Pedido</a>
+            <a class="btn btn-primary m-2" href="{{ path('lista_foto') }}">Listar Pedidos</a>
+        </div>
+    </div>
+{% endblock %}
+

@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Registro de Fotos{% endblock %}
+
+{% block body %}
+    <h1>Registro de Fotos del Evento</h1>
+    {{ form_start(form) }}
+        {{ form_row(form.nombrePersona) }}
+        {{ form_row(form.nombreArchivo) }}
+        {{ form_row(form.formaPago) }}
+        {{ form_row(form.telefono) }}
+        {{ form_row(form.email) }}
+        <button class="btn btn-primary">Enviar</button>
+    {{ form_end(form) }}
+{% endblock %}

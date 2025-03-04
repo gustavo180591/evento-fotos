@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Lista de Registros{% endblock %}
+
+{% block body %}
+    <h1>Lista de Registros</h1>
+    <ul>
+        {% for registro in registroFotos %}
+            <li>
+                {{ registro.nombrePersona }} ({{ registro.nombreArchivo }})
+                <a href="{{ path('registro_detalle', {'id': registro.id}) }}">Detalle</a>
+            </li>
+        {% else %}
+            <li>No hay registros</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
+
