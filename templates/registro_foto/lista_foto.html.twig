@@ -4,15 +4,44 @@
 
 {% block body %}
     <h1>Lista de Registros</h1>
-    <ul>
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre de la Persona</th>
+                <th>Nombre del Archivo</th>
+                <th>Forma de Pago</th>
+                <th>Email</th>
+                <th>Telefono</th>
+                <th>Entregado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
         {% for registro in registroFotos %}
-            <li>
-                {{ registro.nombrePersona }} ({{ registro.nombreArchivo }})
-                <a href="{{ path('registro_detalle', {'id': registro.id}) }}">Detalle</a>
-            </li>
+            <tr>
+                <td>{{ registro.nombrePersona }}</td>
+                <td>{{ registro.nombreArchivo }}</td>
+                <td>{{ registro.formaPago }}</td>
+                <td>{{ registro.email }}</td>
+                <td>{{ registro.telefono }}</td>
+                <td>
+                    <form action="{{ path('registro_foto_entregado', {id: registro.id}) }}" method="post">
+                        <button type="submit" class="btn {{ registro.entregado ? 'btn-success' : 'btn-danger' }}">{{ registro.entregado ? 'Si' : 'No' }}</button>
+                    </form>
+                </td>
+                <td>
+                    <a href="{{ path('registro_editar', {id: registro.id}) }}" class="btn btn-primary">Editar</a>
+                    <a href="{{ path('registro_eliminar', {id: registro.id}) }}" class="btn btn-danger">Eliminar</a>
+                </td>
+            </tr>
         {% else %}
-            <li>No hay registros</li>
+            <tr>
+                <td colspan="7">No hay registros</td>
+            </tr>
         {% endfor %}
-    </ul>
+        </tbody>
+    </table>
+    <a href="{{ path('home_index') }}" class="btn btn-primary">Volver al Inicio</a>
+    <a class="btn btn-primary m-2" href="{{ path('registro_nueva') }}">Registrar Pedido</a>
 {% endblock %}
 

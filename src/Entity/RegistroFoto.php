@@ -28,6 +28,9 @@ class RegistroFoto
     #[ORM\Column(length: 255)]
     private ?string $email = null;
 
+    #[ORM\Column]
+    private ?bool $entregado = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -92,4 +95,17 @@ class RegistroFoto
 
         return $this;
     }
+
+    public function isEntregado(): ?bool
+    {
+        return $this->entregado;
+    }
+
+    public function setEntregado(bool $entregado): static
+    {
+        $this->entregado = $entregado;
+
+        return $this;
+    }
 }
+

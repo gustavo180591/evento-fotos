@@ -48,5 +48,40 @@ class RegistroFotoController extends AbstractController
             'registroFotos' => $registroFotos,
         ]);
     }
+    #[Route('/registro/entregado/{id}', name: 'registro_foto_entregado')]
+    public function entregado(RegistroFoto $registroFoto, EntityManagerInterface $entityManager): Response
+    {
+        $registroFoto->setEntregado(true);
+        $entityManager->flush();
+
+        $this->addFlash('success', 'Registro entregado con exito. ¡Ahora puedes entregar la foto!');
+        return $this->redirectToRoute('lista_foto');
+    }
+    #[Route('/registro/editar/{id}', name: 'registro_editar')]
+    public function editar(RegistroFoto $registroFoto, Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $form = $this->createForm(RegistroFotoType::class, $registroFoto);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Registro editado con exito');
+            return $this->redirectToRoute('lista_foto');
+        }
+
+        return $this->render('registro_foto/registro_editar.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+    #[Route('/registro/eliminar/{id}', name: 'registro_eliminar')]
+    public function eliminar(RegistroFoto $registroFoto, EntityManagerInterface $entityManager): Response
+    {
+        $entityManager->remove($registroFoto);
+        $entityManager->flush();
+
+        $this->addFlash('success', 'Registro eliminado con exito');
+        return $this->redirectToRoute('lista_foto');
+    }
 }
 

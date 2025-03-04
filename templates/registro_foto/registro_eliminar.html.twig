@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Eliminar Registro{% endblock %}
+
+{% block body %}
+    <h1>Eliminar Registro</h1>
+    <p>¿Está seguro de que desea eliminar este registro?</p>
+
+    <form action="{{ path('registro_eliminar', {id: registro.id}) }}" method="post">
+        <button type="submit" class="btn btn-danger">Eliminar</button>
+        <a href="{{ path('lista_foto') }}" class="btn btn-secondary">Cancelar</a>
+    </form>
+{% endblock %}
+

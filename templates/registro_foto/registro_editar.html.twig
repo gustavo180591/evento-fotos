@@ -1,19 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Registro de Fotos{% endblock %}
+{% block title %}Editar Registro{% endblock %}
 
 {% block body %}
-    <h1>Registro de Fotos del Evento</h1>
+    <h1>Editar Registro</h1>
     {{ form_start(form) }}
         {{ form_row(form.nombrePersona) }}
         {{ form_row(form.nombreArchivo) }}
         {{ form_row(form.formaPago) }}
         {{ form_row(form.telefono) }}
         {{ form_row(form.email) }}
-        <button class="btn btn-primary">Enviar</button>
+        <button class="btn btn-primary">Editar</button>
         <br>
-    <a href="{{ path('home_index') }}" class="btn btn-secondary">Volver al Inicio</a>
-    <a class="btn btn-primary m-2" href="{{ path('lista_foto') }}">Listar Pedidos</a>
+    <a href="{{ path('lista_foto') }}" class="btn btn-secondary">Volver al Listado</a>
     {{ form_end(form) }}
 {% endblock %}
-    
